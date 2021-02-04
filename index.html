@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whats App botón</title>
+
+<style>
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+</head><body>
+    <!--Jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!--Floating WhatsApp css-->
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+    <!--Floating WhatsApp javascript-->
+    <script type="text/javascript"
+        src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
+
+
+
+    <body>
+        <!--Div where the WhatsApp will be rendered-->
+        <div id="WAButton"></div>
+    </body>
+
+
+    <script type="text/javascript">//<![CDATA[
+
+
+        $(function () {
+            $('#WAButton').floatingWhatsApp({
+                phone: '+5491128973151', //Acá va el número internacional de whatsapp ej: +54911 y el numero
+                //Get it with Toky at https://toky.co/en/features/whatsapp.
+                headerTitle: 'Chatea con nosotros por Whatsapp', //Popup Title
+                popupMessage: 'Hola ¿En qué podemos ayudarte?', //Popup Message
+                showPopup: true, //Enables popup display
+                buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+                //headerColor: 'crimson', //Custom header color
+                //backgroundColor: 'crimson', //Custom background button color
+                position: "right"
+            });
+        });
+
+
+
+  //]]></script>
+
+    <script>
+        // tell the embed parent frame the height of the content
+        if (window.parent && window.parent.parent) {
+            window.parent.parent.postMessage(["resultsFrame", {
+                height: document.body.getBoundingClientRect().height,
+                slug: "ozph4m1v"
+            }], "*")
+        }
+
+        // always overwrite window.name, in case users try to set it manually
+        window.name = "result"
+    </script>
+
+    <script>
+        let allLines = []
+
+        window.addEventListener("message", (message) => {
+            if (message.data.console) {
+                let insert = document.querySelector("#insert")
+                allLines.push(message.data.console.payload)
+                insert.innerHTML = allLines.join(";\r")
+
+                let result = eval.call(null, message.data.console.payload)
+                if (result !== undefined) {
+                    console.log(result)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
